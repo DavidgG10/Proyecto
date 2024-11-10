@@ -62,6 +62,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Nombre");
 
+        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -72,6 +73,8 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Apellido");
 
+        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Edad");
@@ -80,6 +83,9 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Cedula");
 
+        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
+
+        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setToolTipText("");
 
         jButton1.setBackground(new java.awt.Color(170, 47, 47));
