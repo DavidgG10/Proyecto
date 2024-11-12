@@ -7,9 +7,10 @@
  *
  * @author mikeu
  */
-public class ClaseCardio implements Actividad {
-    @Override
-    public void realizarActividad(){
-        System.out.println("La clase de cardio esta en proceso");
+public class ExcepcionBuscar extends Exception{
+    
+    public ExcepcionBuscar(String mensaje){
+        super(mensaje);
     }
+    
 }
