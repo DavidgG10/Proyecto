@@ -8,26 +8,26 @@
  * @author mikeu
  */
 public class Cliente extends Persona implements InterfazInformacion {
-    private String tipoMembresia;
+    private String idCliente;
 
-    public Cliente(String mebresia, String nombre, int edad, String email, 
-            String contraseña, int cedula) {
-        super(nombre, edad, email, contraseña, cedula);
-        this.tipoMembresia = tipoMembresia;
+    public Cliente(String idCliente, String nombre, String apellido, int edad, 
+            int cedula, String tipomebresia) {
+        super(nombre, apellido, edad, cedula, tipomebresia);
+        this.idCliente = idCliente;
     }
 
-    public String gettipoMembresia() {
-        return tipoMembresia;
+    public String getIdCliente() {
+        return idCliente;
     }
 
-    public void settipoMembresia(String mebresia) {
-        this.tipoMembresia = tipoMembresia;
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
     }
-    
+  
     @Override
     public String getInformacion(){
         return "Cliente: " + getNombre() + ", Cedula: " + getCedula() + 
-                ", Menbresía: " + tipoMembresia;
+                ", ID Cliente: " + idCliente;
     }
     
     @Override

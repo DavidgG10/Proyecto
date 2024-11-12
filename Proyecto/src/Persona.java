@@ -9,17 +9,18 @@
  */
 public abstract class Persona {
     private String nombre;
+    private String apellido;
     private int edad;
-    private String email;
-    private String contraseña;
     private int cedula;
+    private String tipomebresia;
 
-    public Persona(String nombre, int edad, String email, String contraseña, int cedula) {
+    public Persona(String nombre, String apellido, int edad, int cedula, 
+            String tipomebresia) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.edad = edad;
-        this.email = email;
-        this.contraseña = contraseña;
         this.cedula = cedula;
+        this.tipomebresia = tipomebresia;
     }
 
     public String getNombre() {
@@ -30,28 +31,20 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
     public int getEdad() {
         return edad;
     }
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
     }
 
     public int getCedula() {
@@ -61,7 +54,15 @@ public abstract class Persona {
     public void setCedula(int cedula) {
         this.cedula = cedula;
     }
-    
+
+    public String getTipomebresia() {
+        return tipomebresia;
+    }
+
+    public void setTipomebresia(String tipomebresia) {
+        this.tipomebresia = tipomebresia;
+    }
+
     public abstract String getInformacion();
     
 }

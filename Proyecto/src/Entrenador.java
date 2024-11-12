@@ -8,26 +8,25 @@
  * @author mikeu
  */
 public class Entrenador extends Persona implements InterfazInformacion{
-    private String puesto;
+    private String tipoEntrenador;
 
-    public Entrenador(String especialidad, String nombre, int edad, 
-            String email, String contraseña, int cedula) {
-        super(nombre, edad, email, contraseña, cedula);
-        this.puesto = puesto;
+    public Entrenador(String nombre, String apellido, int edad, int cedula, 
+            String tipomebresia) {
+        super(nombre, apellido, edad, cedula, tipomebresia);
     }
 
-    public String getPuesto() {
-        return puesto;
+    public String getTipoEntrenador() {
+        return tipoEntrenador;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
+    public void setTipoEntrenador(String tipoEntrenador) {
+        this.tipoEntrenador = tipoEntrenador;
     }
-    
+
     @Override
     public String getInformacion(){
         return "Entrenador: " + getNombre() + ", Cedula: " + getCedula() + 
-                ", Puesto: " + puesto;
+                ", Tipo de entrenador: " + tipoEntrenador;
     }
     
     @Override
