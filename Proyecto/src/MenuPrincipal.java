@@ -43,6 +43,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mitRegistrarUsuarios = new javax.swing.JMenuItem();
         mitVerUsuarios = new javax.swing.JMenuItem();
         mitEditarUsuarios = new javax.swing.JMenuItem();
+        mitEntrenadores = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mitSalir = new javax.swing.JMenuItem();
 
@@ -90,6 +91,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mitEditarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         mitEditarUsuarios.setText("Editar Usuarios");
         mitMenOpciones.add(mitEditarUsuarios);
+
+        mitEntrenadores.setBackground(new java.awt.Color(170, 47, 47));
+        mitEntrenadores.setForeground(new java.awt.Color(255, 255, 255));
+        mitEntrenadores.setText("Entrenadores");
+        mitMenOpciones.add(mitEntrenadores);
 
         jMenuBar1.add(mitMenOpciones);
 
@@ -188,6 +194,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mitEditarUsuarios;
+    private javax.swing.JMenuItem mitEntrenadores;
     private javax.swing.JMenu mitMenOpciones;
     private javax.swing.JMenuItem mitRegistrarUsuarios;
     private javax.swing.JMenuItem mitSalir;
