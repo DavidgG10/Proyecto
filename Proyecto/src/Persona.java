@@ -62,5 +62,6 @@ public abstract class Persona {
         this.cedula = cedula;
     }
     
+    public abstract String getInformacion();
     
 }
