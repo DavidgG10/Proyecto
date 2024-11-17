@@ -35,8 +35,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
        cliente.setEdad(Integer.parseInt(txtEdad.getText()));
        cliente.setCedula(Integer.parseInt(txtCedula.getText()));
        cliente.setTipomebresia(cmbMebresia.getSelectedItem().toString());
-       
-       cliente.mostrarInformacion();
+       cliente.guardar();
        
     }
     
@@ -119,6 +118,11 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         btnLimpiar.setBackground(new java.awt.Color(170, 47, 47));
         btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/informe.png"))); // NOI18N
@@ -229,6 +233,16 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         registrar();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEdad.setText("");
+        txtCedula.setText("");
+        cmbMebresia.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments

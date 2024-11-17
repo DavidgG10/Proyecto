@@ -1,5 +1,10 @@
 
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -13,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VerUsuarios extends javax.swing.JFrame {
     private DefaultTableModel tabla;
+    
+    private String guarId, guarNombre, guarApe, guarEda, guarCed, guarMem;
 
     /**
      * Creates new form VerUsuarios
@@ -29,6 +36,24 @@ public class VerUsuarios extends javax.swing.JFrame {
         tabla = new DefaultTableModel(null,clientes);
         jtClientes.setModel(tabla);
     }
+    
+    public void consultar(){
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("clientes.dat"))){
+            while(true){
+                String guarId = dis.readUTF();
+                String guarNombre = dis.readUTF();
+                String guarApe = dis.readUTF();
+                String guarEda = dis.readUTF();
+                String guarCed = dis.readUTF();
+                String guarMem = dis.readUTF();
+                
+                String clientes[]={guarId, guarNombre, guarApe, guarEda, guarCed , guarMem };
+                tabla.addRow(clientes);
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +68,7 @@ public class VerUsuarios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtClientes = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnVer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuarios");
@@ -71,13 +96,13 @@ public class VerUsuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtClientes);
 
-        jButton1.setBackground(new java.awt.Color(158, 36, 36));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Ver Clientes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVer.setBackground(new java.awt.Color(158, 36, 36));
+        btnVer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnVer.setForeground(new java.awt.Color(255, 255, 255));
+        btnVer.setText("Ver Clientes");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVerActionPerformed(evt);
             }
         });
 
@@ -91,7 +116,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jButton1)
+                        .addComponent(btnVer)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -101,7 +126,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnVer)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -129,13 +154,11 @@ public class VerUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        consultar();
+  
+    }//GEN-LAST:event_btnVerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,7 +197,7 @@ public class VerUsuarios extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVer;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
