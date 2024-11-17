@@ -85,6 +85,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mitVerUsuarios.setBackground(new java.awt.Color(170, 47, 47));
         mitVerUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         mitVerUsuarios.setText("Ver Usuarios");
+        mitVerUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitVerUsuariosActionPerformed(evt);
+            }
+        });
         mitMenOpciones.add(mitVerUsuarios);
 
         mitEditarUsuarios.setBackground(new java.awt.Color(170, 47, 47));
@@ -151,6 +156,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarUsuarios r = new RegistrarUsuarios();
     }//GEN-LAST:event_mitRegistrarUsuariosActionPerformed
+
+    private void mitVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitVerUsuariosActionPerformed
+        // TODO add your handling code here:
+        VerUsuarios v = new VerUsuarios();
+    }//GEN-LAST:event_mitVerUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
