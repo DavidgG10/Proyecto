@@ -1,5 +1,6 @@
 
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,6 +12,7 @@ import javax.swing.ImageIcon;
  * @author Admin
  */
 public class VerUsuarios extends javax.swing.JFrame {
+    private DefaultTableModel tabla;
 
     /**
      * Creates new form VerUsuarios
@@ -22,6 +24,10 @@ public class VerUsuarios extends javax.swing.JFrame {
         this.setResizable(false);
         ImageIcon img = new ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ProyectoProgra\\Proyecto\\Proyecto\\src\\img\\iconogym.png");
         setIconImage(img.getImage());
+        
+        String clientes[]={"IdCliente","NombreCliente","Apellido","Edad","Cedula","Membresia"};
+        tabla = new DefaultTableModel(null,clientes);
+        jtClientes.setModel(tabla);
     }
 
     /**
@@ -36,7 +42,7 @@ public class VerUsuarios extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtClientes = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -50,8 +56,9 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtClientes.setBackground(new java.awt.Color(255, 255, 255));
+        jtClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -62,12 +69,17 @@ public class VerUsuarios extends javax.swing.JFrame {
                 "ID Cliente", "Nombre", "Apellido", "Edad", "Cedula", "Membresia"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtClientes);
 
         jButton1.setBackground(new java.awt.Color(158, 36, 36));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ver Clientes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -117,6 +129,14 @@ public class VerUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -151,12 +171,13 @@ public class VerUsuarios extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jtClientes;
     // End of variables declaration//GEN-END:variables
 }
