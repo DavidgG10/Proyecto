@@ -176,7 +176,7 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Bienbenido al Sistema de Titanium Fitness"/>
+        <Property name="text" type="java.lang.String" value="Bienvenido al Sistema de Titanium Fitness"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

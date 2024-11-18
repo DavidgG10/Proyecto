@@ -53,7 +53,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bienbenido al Sistema de Titanium Fitness");
+        jLabel1.setText("Bienvenido al Sistema de Titanium Fitness");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maquina-de-gimnasio.png"))); // NOI18N

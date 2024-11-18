@@ -68,6 +68,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Usuarios");
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(170, 47, 47));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
