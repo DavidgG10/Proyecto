@@ -19,7 +19,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        ImageIcon img = new ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ProyectoProgra\\Proyecto\\Proyecto\\src\\img\\iconogym.png");
+        ImageIcon img = new ImageIcon(getClass().getResource("/img/iconogym.png"));
         setIconImage(img.getImage());
         
     }

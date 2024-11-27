@@ -20,7 +20,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        ImageIcon img = new ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ProyectoProgra\\Proyecto\\Proyecto\\src\\img\\iconogym.png");
+       ImageIcon img = new ImageIcon(getClass().getResource("/img/iconogym.png"));
         setIconImage(img.getImage());
     }
 
