@@ -51,7 +51,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                 tabla.addRow(clientes);
             }
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al consultar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Error al consultar los datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
