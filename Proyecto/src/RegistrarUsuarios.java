@@ -28,8 +28,8 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
     }
     
     public void registrar(){
-       Cliente cliente = new Cliente("","","",0,0,"");
-       cliente.setIdCliente("10");
+       Cliente cliente = new Cliente("","",0,0,"");
+       cliente.setIdCliente(GenerarID.generarIDMembresia());
        cliente.setNombre(txtNombre.getText());
        cliente.setApellido(txtApellido.getText());
        cliente.setEdad(Integer.parseInt(txtEdad.getText()));

@@ -19,12 +19,13 @@ public class Cliente extends Persona implements InterfazInformacion {
     private String idCliente;
     private String guarId, guarNombre, guarApe, guarEda, guarCed, guarMem;
 
-    public Cliente(String idCliente, String nombre, String apellido, int edad,
+    public Cliente(String nombre, String apellido, int edad,
             int cedula, String tipomebresia) {
-        super(nombre, apellido, edad, cedula, tipomebresia);
-        this.idCliente = idCliente;
-    }
+    super(nombre, apellido, edad, cedula, tipomebresia);  
+    this.idCliente = GenerarID.generarIDMembresia();  
+}
 
+  
     public String getIdCliente() {
         return idCliente;
     }
