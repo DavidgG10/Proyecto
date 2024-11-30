@@ -1,6 +1,9 @@
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,5 +36,27 @@ public class DatosCliente {
         }catch (SQLException e){
             Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+    
+    public ArrayList<Cliente> todosClientes() {
+        ArrayList<Cliente> miListaClientes = new ArrayList<>();
+        try {
+            //1-Crea la conexion con la bd
+            ConectarBD con = new ConectarBD();
+            //2- crear el statement
+            Statement st = con.crearStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM articulo");
+            while (rs.next()) {
+                Cliente cliente = new Cliente(rs.getString("idCliente"),
+                        rs.getString("nombre"), rs.getString("apellido"),rs.getInt("edad"),rs.getInt("cedula"),rs.getString("membresia"));
+                miListaClientes.add(cliente);
+            }
+            //4- cerrar la conexion con la bd
+            rs.close();
+            con.cerrarConexion();
+        } catch (SQLException e) {
+            Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return miListaClientes;
     }
 }
