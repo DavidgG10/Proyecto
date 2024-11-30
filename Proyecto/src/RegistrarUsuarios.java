@@ -27,17 +27,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         
     }
     
-    public void registrar(){
-       Cliente cliente = new Cliente("","",0,0,"");
-       cliente.setIdCliente(GenerarID.generarIDMembresia());
-       cliente.setNombre(txtNombre.getText());
-       cliente.setApellido(txtApellido.getText());
-       cliente.setEdad(Integer.parseInt(txtEdad.getText()));
-       cliente.setCedula(Integer.parseInt(txtCedula.getText()));
-       cliente.setTipomebresia(cmbMebresia.getSelectedItem().toString());
-       cliente.guardar();
-       
-    }
+    
     
 
     /**
@@ -232,7 +222,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        registrar();
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
