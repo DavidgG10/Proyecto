@@ -1,6 +1,7 @@
 
 
 import java.io.*;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,29 +30,28 @@ public class VerUsuarios extends javax.swing.JFrame {
         this.setResizable(false);
         ImageIcon img = new ImageIcon(getClass().getResource("/img/iconogym.png"));
         setIconImage(img.getImage());
-        
-        String clientes[]={"IdCliente","NombreCliente","Apellido","Edad","Cedula","Membresia"};
-        tabla = new DefaultTableModel(null,clientes);
-        jtClientes.setModel(tabla);
     }
     
-    public void consultar(){
-        try (DataInputStream dis = new DataInputStream(new FileInputStream("clientes.dat"))){
-            while(true){
-                String guarId = dis.readUTF();
-                String guarNombre = dis.readUTF();
-                String guarApe = dis.readUTF();
-                String guarEda = dis.readUTF();
-                String guarCed = dis.readUTF();
-                String guarMem = dis.readUTF();
-                
-                String clientes[]={guarId, guarNombre, guarApe, guarEda, guarCed , guarMem };
-                tabla.addRow(clientes);
-            }
-        } catch (IOException e) {
-           JOptionPane.showMessageDialog(null, "Error al consultar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+    public void cargarDatos() {
+        DefaultTableModel model = (DefaultTableModel) jtClientes.getModel();
+        model.setNumRows(0);
+
+        DatosCliente cliente = new DatosCliente();
+        ArrayList<Cliente> miListaClientes = cliente.todosClientes();
+        String datos[] = new String[5];
+        int i = 0;
+        for (Cliente clientes : miListaClientes) {
+            datos[0] = miListaClientes.get(i).getNombre();
+            datos[1] = miListaClientes.get(i).getApellido();
+            datos[2] = String.valueOf(miListaClientes.get(i).getEdad());
+            datos[3] = miListaClientes.get(i).getCedula();
+            datos[4] = miListaClientes.get(i).getTipomebresia();
+            i++;
+            model.addRow(datos);//añadimos los datos en la lista
         }
+        jtClientes.setModel(model);//se incluyen en la tabla
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,13 +84,13 @@ public class VerUsuarios extends javax.swing.JFrame {
         jtClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Cliente", "Nombre", "Apellido", "Edad", "Cedula", "Membresia"
+                "Nombre", "Apellido", "Edad", "Cedula", "Membresia"
             }
         ));
         jScrollPane1.setViewportView(jtClientes);
@@ -155,7 +155,7 @@ public class VerUsuarios extends javax.swing.JFrame {
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         // TODO add your handling code here:
-        consultar();
+        cargarDatos();
   
     }//GEN-LAST:event_btnVerActionPerformed
 

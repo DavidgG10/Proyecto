@@ -22,11 +22,11 @@ public class DatosCliente {
              
             ConectarBD con = new ConectarBD();
             //2- crear el statement
-            PreparedStatement misql = con.crearPreparedStatement("INSERT INTO articulo VALUES (?,?,?)");
-            misql.setString(1, cliente.getIdCliente());
-            misql.setString(2, cliente.getNombre());
-            misql.setString(3, cliente.getApellido());
-            misql.setInt(4, cliente.getCedula());
+            PreparedStatement misql = con.crearPreparedStatement("INSERT INTO clientes VALUES (?,?,?,?,?)");
+            misql.setString(1, cliente.getNombre());
+            misql.setString(2, cliente.getApellido());
+            misql.setInt(3, cliente.getEdad());
+            misql.setString(4, cliente.getCedula());
             misql.setString(5, cliente.getTipomebresia());
             
             //3- ejecutar el comando sql
@@ -45,10 +45,10 @@ public class DatosCliente {
             ConectarBD con = new ConectarBD();
             //2- crear el statement
             Statement st = con.crearStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM articulo");
+            ResultSet rs = st.executeQuery("SELECT * FROM clientes");
             while (rs.next()) {
-                Cliente cliente = new Cliente(rs.getString("idCliente"),
-                        rs.getString("nombre"), rs.getString("apellido"),rs.getInt("edad"),rs.getInt("cedula"),rs.getString("membresia"));
+                Cliente cliente = new Cliente(rs.getString("nombre"), rs.getString("apellido"),
+                        rs.getInt("edad"),rs.getString("cedula"),rs.getString("membresia"));
                 miListaClientes.add(cliente);
             }
             //4- cerrar la conexion con la bd
@@ -58,5 +58,33 @@ public class DatosCliente {
             Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
         }
         return miListaClientes;
+    }
+    
+    public void eliminarClientes(String cedula) {
+        try {
+            ConectarBD con = new ConectarBD();
+            PreparedStatement misql = con.crearPreparedStatement("DELETE FROM clientes WHERE cedula=?");
+            misql.setString(1, cedula);
+            misql.executeUpdate();
+            con.cerrarConexion();
+        } catch (SQLException e) {
+            Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    public void actualizarClientes(Cliente cliente){
+        try{
+            ConectarBD con = new ConectarBD();
+            PreparedStatement misql = con.crearPreparedStatement("UPDATE clientes SET nombre=?, apellido=?, edad=?, membresia=? WHERE cedula=?");
+            misql.setString(1, cliente.getNombre());
+            misql.setString(2, cliente.getApellido());
+            misql.setInt(3, cliente.getEdad());
+            misql.setString(4, cliente.getTipomebresia());
+            misql.setString(5, cliente.getCedula());
+            misql.executeUpdate();
+            con.cerrarConexion();
+        }catch(SQLException e){
+             Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }

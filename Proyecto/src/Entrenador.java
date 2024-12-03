@@ -10,7 +10,7 @@
 public class Entrenador extends Persona implements InterfazInformacion{
     private String tipoEntrenador;
 
-    public Entrenador(String nombre, String apellido, int edad, int cedula, 
+    public Entrenador(String nombre, String apellido, int edad, String cedula, 
             String tipomebresia) {
         super(nombre, apellido, edad, cedula, tipomebresia);
     }

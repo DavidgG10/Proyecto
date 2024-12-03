@@ -11,10 +11,10 @@ public abstract class Persona {
     private String nombre;
     private String apellido;
     private int edad;
-    private int cedula;
+    private String cedula;
     private String tipomebresia;
 
-    public Persona(String nombre, String apellido, int edad, int cedula, 
+    public Persona(String nombre, String apellido, int edad, String cedula, 
             String tipomebresia) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -47,11 +47,11 @@ public abstract class Persona {
         this.edad = edad;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 

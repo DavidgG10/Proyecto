@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -26,6 +27,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         this.setResizable(false);
         ImageIcon img = new ImageIcon(getClass().getResource("/img/iconogym.png"));
         setIconImage(img.getImage());
+        cargarDatos();
         
     }
     
@@ -34,17 +36,19 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         model.setNumRows(0);
 
         DatosCliente cliente = new DatosCliente();
-        ArrayList<Cliente> miListaClientes = cliente.;
-        String datos[] = new String[3];
+        ArrayList<Cliente> miListaClientes = cliente.todosClientes();
+        String datos[] = new String[5];
         int i = 0;
-        for (Cliente liente : miListaClientes) {
-            datos[0] = String.valueOf(miListaArticulo.get(i).getCodigo());
-            datos[1] = miListaArticulo.get(i).getDescripcion();
-            datos[2] = String.valueOf(miListaArticulo.get(i).getPrecio());
+        for (Cliente clientes : miListaClientes) {
+            datos[0] = miListaClientes.get(i).getNombre();
+            datos[1] = miListaClientes.get(i).getApellido();
+            datos[2] = String.valueOf(miListaClientes.get(i).getEdad());
+            datos[3] = miListaClientes.get(i).getCedula();
+            datos[4] = miListaClientes.get(i).getTipomebresia();
             i++;
             model.addRow(datos);//añadimos los datos en la lista
         }
-        jtArticulo.setModel(model);//se incluyen en la tabla
+        jTablaClientes.setModel(model);//se incluyen en la tabla
     }
     
 
@@ -72,6 +76,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cmbMebresia = new javax.swing.JComboBox<>();
+        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaClientes = new javax.swing.JTable();
 
@@ -145,6 +150,15 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         cmbMebresia.setBackground(new java.awt.Color(204, 204, 204));
         cmbMebresia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------", "Open Gym", "TF", "Premium" }));
 
+        btnEliminar.setBackground(new java.awt.Color(158, 36, 36));
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -159,29 +173,35 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNombre)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)))
+                            .addComponent(txtEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbMebresia, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregar))
+                        .addComponent(btnLimpiar)
+                        .addGap(33, 33, 33))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(46, 46, 46)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +211,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -200,30 +219,41 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(cmbMebresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+                            .addComponent(cmbMebresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregar)
+                            .addComponent(btnLimpiar)
+                            .addComponent(btnEliminar))
+                        .addGap(23, 23, 23))))
         );
 
         jTablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "idCliente", "Nombre", "Apellido ", "Edad", "Cedula", "Membresia"
+                "Nombre", "Apellido ", "Edad", "Cedula", "Membresia"
             }
         ));
+        jTablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablaClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,16 +265,16 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -254,10 +284,17 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
+        DatosCliente datCliente = new DatosCliente();
+        Cliente client = new Cliente(txtNombre.getText(), txtApellido.getText(), Integer.parseInt(txtEdad.getText()),
+                txtCedula.getText(), String.valueOf(cmbMebresia.getSelectedItem()));
+        datCliente.crearCliente(client);
+        cargarDatos();
+        JOptionPane.showMessageDialog(null, "Cliente agregado correctamente","Cliente agregado", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -270,6 +307,40 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         cmbMebresia.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        String cedulaCl = txtCedula.getText();
+        DatosCliente dtCliente = new DatosCliente();
+        dtCliente.eliminarClientes(cedulaCl);
+        cargarDatos();
+        JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente","Cliente eliminado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jTablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaClientesMouseClicked
+        // TODO add your handling code here:
+        int clienteSeleccionado;
+        try{
+            clienteSeleccionado=jTablaClientes.getSelectedRow();
+            if(clienteSeleccionado==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun cliente");
+            }else{
+                String nom=(String) jTablaClientes.getValueAt(clienteSeleccionado, 0);
+                String ape=(String) jTablaClientes.getValueAt(clienteSeleccionado, 1);
+                String eda=(String) jTablaClientes.getValueAt(clienteSeleccionado, 2);
+                String ced=(String) jTablaClientes.getValueAt(clienteSeleccionado, 3);
+                String mem=(String) jTablaClientes.getValueAt(clienteSeleccionado, 4);
+                
+                txtNombre.setText(nom);
+                txtApellido.setText(ape);
+                txtEdad.setText(eda);
+                txtCedula.setText(ced);
+                cmbMebresia.setSelectedItem(mem);
+           }
+        }catch (Exception e){
+        }
+              
+    }//GEN-LAST:event_jTablaClientesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -310,6 +381,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cmbMebresia;
     private javax.swing.JLabel jLabel1;
