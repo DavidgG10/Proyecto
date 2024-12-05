@@ -12,7 +12,7 @@ public class Entrenador extends Persona implements InterfazInformacion{
 
     public Entrenador(String nombre, String apellido, int edad, String cedula, 
             String tipomebresia) {
-        super(nombre, apellido, edad, cedula, tipomebresia);
+        super(nombre, apellido, edad);
     }
 
     public String getTipoEntrenador() {
@@ -25,12 +25,14 @@ public class Entrenador extends Persona implements InterfazInformacion{
 
     @Override
     public String getInformacion(){
-        return "Entrenador: " + getNombre() + ", Cedula: " + getCedula() + 
+        return "Entrenador: " + getNombre() + 
                 ", Tipo de entrenador: " + tipoEntrenador;
     }
     
+   
+
     @Override
-    public void mostrarInformacion() {
-        System.out.println(getInformacion());
+    public void generarIdCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

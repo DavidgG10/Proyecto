@@ -8,33 +8,45 @@ import javax.swing.JOptionPane;
  */
 public class Cliente extends Persona implements InterfazInformacion {
 
-    private String idCliente;
+    
+    private String cedula;
+    private String tipomebresia;
     
 
-    public Cliente(String nombre, String apellido, int edad,
-            String cedula, String tipomebresia) {
-        super(nombre, apellido, edad, cedula, tipomebresia);
-        this.idCliente = GenerarID.generarIDMembresia();
+    public Cliente( String nombre, String apellido, int edad, String cedula, String tipomebresia) {
+        super(nombre, apellido, edad);
+        this.cedula = cedula;
+        this.tipomebresia = tipomebresia;
     }
 
-    public String getIdCliente() {
-        return idCliente;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
+
+    public String getTipomebresia() {
+        return tipomebresia;
+    }
+
+    public void setTipomebresia(String tipomebresia) {
+        this.tipomebresia = tipomebresia;
+    }
+    
+    
 
     @Override
     public String getInformacion() {
         return "Cliente: " + getNombre() + ", Apellido: " + getApellido() + ", Cedula: " + getCedula()
-                + ", Edad: " + getEdad() + ", Membresia: " + getTipomebresia() + ", ID Cliente: " + idCliente;
+                + ", Edad: " + getEdad() + ", Membresia: " + getTipomebresia();
     }
-
-   
 
     @Override
-    public void mostrarInformacion() {
+    public void generarIdCliente() {
+       
     }
+
 
 }

@@ -8,5 +8,5 @@
  * @author mikeu
  */
 public interface InterfazInformacion {
-    void mostrarInformacion();
+    void generarIdCliente();
 }

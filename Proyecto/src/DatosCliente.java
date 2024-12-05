@@ -47,7 +47,8 @@ public class DatosCliente {
             Statement st = con.crearStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM clientes");
             while (rs.next()) {
-                Cliente cliente = new Cliente(rs.getString("nombre"), rs.getString("apellido"),
+                Cliente cliente;
+                cliente = new Cliente(rs.getString("nombre"), rs.getString("apellido"),
                         rs.getInt("edad"),rs.getString("cedula"),rs.getString("membresia"));
                 miListaClientes.add(cliente);
             }
