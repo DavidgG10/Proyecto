@@ -1,4 +1,6 @@
 
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -105,6 +107,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mitEntrenadores.setBackground(new java.awt.Color(170, 47, 47));
         mitEntrenadores.setForeground(new java.awt.Color(255, 255, 255));
         mitEntrenadores.setText("Entrenadores");
+        mitEntrenadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitEntrenadoresActionPerformed(evt);
+            }
+        });
         mitMenOpciones.add(mitEntrenadores);
 
         jMenuBar1.add(mitMenOpciones);
@@ -171,6 +178,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         EditarUsuarios e = new EditarUsuarios();
     }//GEN-LAST:event_mitEditarUsuariosActionPerformed
+
+    private void mitEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitEntrenadoresActionPerformed
+        // TODO add your handling code here:
+        Entrenadores en = new Entrenadores();
+    }//GEN-LAST:event_mitEntrenadoresActionPerformed
 
     /**
      * @param args the command line arguments

@@ -87,6 +87,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Entrenadores"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mitEntrenadoresActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

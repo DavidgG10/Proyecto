@@ -10,10 +10,13 @@
 public class Entrenador extends Persona implements InterfazInformacion{
     private String tipoEntrenador;
 
-    public Entrenador(String nombre, String apellido, int edad, String cedula, 
-            String tipomebresia) {
+    public Entrenador( String nombre, String apellido, int edad ,String tipoEntrenador) {
         super(nombre, apellido, edad);
+        this.tipoEntrenador = tipoEntrenador;
     }
+
+    
+    
 
     public String getTipoEntrenador() {
         return tipoEntrenador;

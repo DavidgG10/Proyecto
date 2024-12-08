@@ -88,4 +88,29 @@ public class DatosCliente {
              Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    
+    public ArrayList<Cliente> BuscarClienteNombre(String nombre) {
+        ArrayList<Cliente> miListaClientes = new ArrayList<>();
+        try {
+            //1-Crea la conexion con la bd
+            ConectarBD con = new ConectarBD();
+            //2- crear el statement
+            PreparedStatement st = con.crearPreparedStatement("SELECT * FROM clientes WHERE nombre like ?");
+            nombre = '%' + nombre + '%';
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Cliente clie = new Cliente(rs.getString("nombre"),
+                        rs.getString("apellido"), rs.getInt("edad"), rs.getString("cedula"),rs.getString("membresia"));
+                miListaClientes.add(clie);
+            }
+            //4- cerrar la conexion con la bd
+            rs.close();
+            con.cerrarConexion();
+        } catch (SQLException e) {
+            Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return miListaClientes;
+    }
+    
 }

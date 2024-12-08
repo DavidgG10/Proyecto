@@ -1,5 +1,7 @@
 
 
+
+
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -30,22 +32,29 @@ public class VerUsuarios extends javax.swing.JFrame {
         this.setResizable(false);
         ImageIcon img = new ImageIcon(getClass().getResource("/img/iconogym.png"));
         setIconImage(img.getImage());
+        cargarDatos();
     }
     
     public void cargarDatos() {
         DefaultTableModel model = (DefaultTableModel) jtClientes.getModel();
         model.setNumRows(0);
 
-        DatosCliente cliente = new DatosCliente();
-        ArrayList<Cliente> miListaClientes = cliente.todosClientes();
+        DatosCliente dClie = new DatosCliente();
+        ArrayList<Cliente> miListaClientes = dClie.todosClientes();
+        if (txtBuscar.getText().contentEquals("")) {
+            miListaClientes =  dClie.todosClientes();
+        } else {
+            miListaClientes = dClie.BuscarClienteNombre(txtBuscar.getText());
+        }
         String datos[] = new String[5];
         int i = 0;
-        for (Cliente clientes : miListaClientes) {
+        for (Cliente cliente : miListaClientes) {
             datos[0] = miListaClientes.get(i).getNombre();
             datos[1] = miListaClientes.get(i).getApellido();
             datos[2] = String.valueOf(miListaClientes.get(i).getEdad());
             datos[3] = miListaClientes.get(i).getCedula();
-            datos[4] = miListaClientes.get(i).getTipomebresia();
+            datos[1] = miListaClientes.get(i).getTipomebresia();
+            
             i++;
             model.addRow(datos);//añadimos los datos en la lista
         }
@@ -66,7 +75,9 @@ public class VerUsuarios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtClientes = new javax.swing.JTable();
-        btnVer = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuarios");
@@ -95,38 +106,49 @@ public class VerUsuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtClientes);
 
-        btnVer.setBackground(new java.awt.Color(158, 36, 36));
-        btnVer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnVer.setForeground(new java.awt.Color(255, 255, 255));
-        btnVer.setText("Ver Clientes");
-        btnVer.addActionListener(new java.awt.event.ActionListener() {
+        txtBuscar.setBackground(new java.awt.Color(153, 153, 153));
+
+        btnBuscar.setBackground(new java.awt.Color(168, 47, 47));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar Cliente");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(btnVer)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
-                .addComponent(btnVer)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,11 +175,10 @@ public class VerUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         cargarDatos();
-  
-    }//GEN-LAST:event_btnVerActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,10 +217,12 @@ public class VerUsuarios extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVer;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtClientes;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
