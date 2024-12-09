@@ -58,6 +58,7 @@ public class DatosEntrenador {
             Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
         }
         return miListaentrenadores;
+        
     }
     
     public void eliminarEntrenadores(String cedula) {

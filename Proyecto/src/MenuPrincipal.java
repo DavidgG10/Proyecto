@@ -46,6 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mitVerUsuarios = new javax.swing.JMenuItem();
         mitEditarUsuarios = new javax.swing.JMenuItem();
         mitEntrenadores = new javax.swing.JMenuItem();
+        btnAsignarClientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mitSalir = new javax.swing.JMenuItem();
 
@@ -113,6 +114,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         mitMenOpciones.add(mitEntrenadores);
+
+        btnAsignarClientes.setBackground(new java.awt.Color(168, 47, 47));
+        btnAsignarClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnAsignarClientes.setText("Asignar Cliientes");
+        btnAsignarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarClientesActionPerformed(evt);
+            }
+        });
+        mitMenOpciones.add(btnAsignarClientes);
 
         jMenuBar1.add(mitMenOpciones);
 
@@ -184,6 +195,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Entrenadores en = new Entrenadores();
     }//GEN-LAST:event_mitEntrenadoresActionPerformed
 
+    private void btnAsignarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarClientesActionPerformed
+        // TODO add your handling code here:
+        asignacionClientes as = new asignacionClientes();
+    }//GEN-LAST:event_btnAsignarClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,6 +236,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnAsignarClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

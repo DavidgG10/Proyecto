@@ -28,6 +28,7 @@ public class Entrenadores extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon(getClass().getResource("/img/iconogym.png"));
         setIconImage(img.getImage());
         cargarDatos();
+   
     }
     
     public void cargarDatos() {
@@ -35,20 +36,23 @@ public class Entrenadores extends javax.swing.JFrame {
         model.setNumRows(0);
 
         DatosEntrenador entrenador = new DatosEntrenador();
-        ArrayList<Entrenador> miListaEntrenadors = entrenador.todosEntrenadores();
+        ArrayList<Entrenador> miListaEntrenadores = entrenador.todosEntrenadores();
         String datos[] = new String[4];
         int i = 0;
-        for (Entrenador entrenadores : miListaEntrenadors) {
-            datos[0] = miListaEntrenadors.get(i).getNombre();
-            datos[1] = miListaEntrenadors.get(i).getApellido();
-            datos[2] = String.valueOf(miListaEntrenadors.get(i).getEdad());
-            datos[3] = miListaEntrenadors.get(i).getTipoEntrenador();
+        for (Entrenador entrenadores : miListaEntrenadores) {
+            datos[0] = miListaEntrenadores.get(i).getNombre();
+            datos[1] = miListaEntrenadores.get(i).getApellido();
+            datos[2] = String.valueOf(miListaEntrenadores.get(i).getEdad());
+            datos[3] = miListaEntrenadores.get(i).getTipoEntrenador();
            
             i++;
             model.addRow(datos);//añadimos los datos en la lista
         }
         jTablaEntrenadores.setModel(model);//se incluyen en la tabla
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +77,7 @@ public class Entrenadores extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        cmbEntrenadores = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaEntrenadores = new javax.swing.JTable();
 
@@ -144,6 +149,8 @@ public class Entrenadores extends javax.swing.JFrame {
             }
         });
 
+        cmbEntrenadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -162,11 +169,7 @@ public class Entrenadores extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbTipoEntrenad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtApellido)))
+                            .addComponent(jLabel2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnAgregar)
@@ -174,6 +177,12 @@ public class Entrenadores extends javax.swing.JFrame {
                         .addComponent(btnEliminar)
                         .addGap(18, 18, 18)
                         .addComponent(btnLimpiar)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbEntrenadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cmbTipoEntrenad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtApellido)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -195,7 +204,8 @@ public class Entrenadores extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnLimpiar)
+                    .addComponent(cmbEntrenadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -252,6 +262,7 @@ public class Entrenadores extends javax.swing.JFrame {
         datEntrenad.crearEntrenador(entrenad);
         cargarDatos();
         JOptionPane.showMessageDialog(null, "Entrenador agregado correctamente","Entrenador agregado", JOptionPane.INFORMATION_MESSAGE);
+        cmbEntrenadores.addItem(entrenad.getNombre());
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -278,7 +289,7 @@ public class Entrenadores extends javax.swing.JFrame {
         try{
             entrenadorSeleccionado=jTablaEntrenadores.getSelectedRow();
             if(entrenadorSeleccionado==-1){
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun cliente");
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun entrenador");
             }else{
                 String nom=(String) jTablaEntrenadores.getValueAt(entrenadorSeleccionado, 0);
                 String ape=(String) jTablaEntrenadores.getValueAt(entrenadorSeleccionado, 1);
@@ -335,6 +346,7 @@ public class Entrenadores extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox<String> cmbEntrenadores;
     private javax.swing.JComboBox<String> cmbTipoEntrenad;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
