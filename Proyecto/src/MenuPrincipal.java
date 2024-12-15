@@ -117,7 +117,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         btnAsignarClientes.setBackground(new java.awt.Color(168, 47, 47));
         btnAsignarClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnAsignarClientes.setText("Asignar Cliientes");
+        btnAsignarClientes.setText("Asignar Clientes");
+        btnAsignarClientes.setActionCommand("Asignar Clientes");
         btnAsignarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignarClientesActionPerformed(evt);

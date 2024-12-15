@@ -70,13 +70,15 @@ public class asignacionClientes extends javax.swing.JFrame {
         String membresia = txtMembresia.getText();
         String entrenador = (String) cmbEntrenadores.getSelectedItem();
 
-        
+        // Crear el hilo para enviar los datos
         new Thread(new Runnable() {
             public void run() {
+                Socket socket = null;
+                DataOutputStream dataoutput = null;
+
                 try {
-                    
+                    // Establecer la conexión con el servidor
                     socket = new Socket("127.0.0.1", 1201);
-                    datainput = new DataInputStream(socket.getInputStream());
                     dataoutput = new DataOutputStream(socket.getOutputStream());
 
                     // Enviar los datos al servidor
@@ -89,6 +91,18 @@ public class asignacionClientes extends javax.swing.JFrame {
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        // Cerrar los recursos
+                        if (dataoutput != null) {
+                            dataoutput.close();
+                        }
+                        if (socket != null) {
+                            socket.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }).start();
