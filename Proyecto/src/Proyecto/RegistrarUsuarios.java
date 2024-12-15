@@ -29,30 +29,27 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
     }
     
     public void cargarDatos() {
-        new Thread(() -> {
-            DefaultTableModel model = (DefaultTableModel) jTablaClientes.getModel();
-            model.setNumRows(0);
 
-            DatosCliente cliente = new DatosCliente();
-            ArrayList<Cliente> miListaClientes = cliente.todosClientes();
-            String datos[] = new String[5];
-            int i = 0;
-            for (Cliente clientes : miListaClientes) {
-                datos[0] = miListaClientes.get(i).getNombre();
-                datos[1] = miListaClientes.get(i).getApellido();
-                datos[2] = String.valueOf(miListaClientes.get(i).getEdad());
-                datos[3] = miListaClientes.get(i).getCedula();
-                datos[4] = miListaClientes.get(i).getTipomebresia();
-                i++;
-                model.addRow(datos);//añadimos los datos en la lista
-            }
-            // Actualizar la tabla en el hilo de la interfaz de usuario
-            
-            SwingUtilities.invokeLater(() -> {
-            jTablaClientes.setModel(model); // Se incluyen en la tabla
-        });
-    }).start(); // Iniciar el hilo
-        
+        DefaultTableModel model = (DefaultTableModel) jTablaClientes.getModel();
+        model.setNumRows(0);
+
+        DatosCliente cliente = new DatosCliente();
+        ArrayList<Cliente> miListaClientes = cliente.todosClientes();
+        String datos[] = new String[5];
+        int i = 0;
+        for (Cliente clientes : miListaClientes) {
+            datos[0] = miListaClientes.get(i).getNombre();
+            datos[1] = miListaClientes.get(i).getApellido();
+            datos[2] = String.valueOf(miListaClientes.get(i).getEdad());
+            datos[3] = miListaClientes.get(i).getCedula();
+            datos[4] = miListaClientes.get(i).getTipomebresia();
+            i++;
+            model.addRow(datos);//añadimos los datos en la lista
+        }
+        // Actualizar la tabla en el hilo de la interfaz de usuario
+
+        jTablaClientes.setModel(model); // Se incluyen en la tabla
+
     }
     
     

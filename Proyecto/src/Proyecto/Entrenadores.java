@@ -79,7 +79,6 @@ public class Entrenadores extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        cmbEntrenadores = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaEntrenadores = new javax.swing.JTable();
 
@@ -151,8 +150,6 @@ public class Entrenadores extends javax.swing.JFrame {
             }
         });
 
-        cmbEntrenadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -180,12 +177,10 @@ public class Entrenadores extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnLimpiar)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbEntrenadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cmbTipoEntrenad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtApellido)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbTipoEntrenad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtApellido))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,8 +201,7 @@ public class Entrenadores extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnLimpiar)
-                    .addComponent(cmbEntrenadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLimpiar))
                 .addGap(18, 18, 18))
         );
 
@@ -264,7 +258,7 @@ public class Entrenadores extends javax.swing.JFrame {
         datEntrenad.crearEntrenador(entrenad);
         cargarDatos();
         JOptionPane.showMessageDialog(null, "Entrenador agregado correctamente","Entrenador agregado", JOptionPane.INFORMATION_MESSAGE);
-        cmbEntrenadores.addItem(entrenad.getNombre());
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -348,7 +342,6 @@ public class Entrenadores extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<String> cmbEntrenadores;
     private javax.swing.JComboBox<String> cmbTipoEntrenad;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

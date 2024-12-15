@@ -19,25 +19,29 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class DatosCliente {
-    public void crearCliente(Cliente cliente){
-        try{
-             
-            ConectarBD con = new ConectarBD();
-            //2- crear el statement
-            PreparedStatement misql = con.crearPreparedStatement("INSERT INTO clientes VALUES (?,?,?,?,?)");
-            misql.setString(1, cliente.getNombre());
-            misql.setString(2, cliente.getApellido());
-            misql.setInt(3, cliente.getEdad());
-            misql.setString(4, cliente.getCedula());
-            misql.setString(5, cliente.getTipomebresia());
-            
-            //3- ejecutar el comando sql
-            misql.executeUpdate();
-           
-            con.cerrarConexion();
-        }catch (SQLException e){
-            Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
-        }
+    public void crearCliente(Cliente cliente) {
+        Thread hilo = new Thread(() -> {
+            try {
+                ConectarBD con = new ConectarBD();
+                // Crear el statement
+                PreparedStatement misql = con.crearPreparedStatement("INSERT INTO clientes VALUES (?,?,?,?,?)");
+                misql.setString(1, cliente.getNombre());
+                misql.setString(2, cliente.getApellido());
+                misql.setInt(3, cliente.getEdad());
+                misql.setString(4, cliente.getCedula());
+                misql.setString(5, cliente.getTipomebresia());
+
+                // Ejecutar el comando SQL
+                misql.executeUpdate();
+
+                // Cerrar la conexión
+                con.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, e);
+            }
+        });
+        hilo.start(); // Iniciar el hilo
     }
     
     public ArrayList<Cliente> todosClientes() {
