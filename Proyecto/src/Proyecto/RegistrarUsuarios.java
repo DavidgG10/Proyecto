@@ -48,9 +48,11 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
             }
             // Actualizar la tabla en el hilo de la interfaz de usuario
             
-                jTablaClientes.setModel(model); // Se incluyen en la tabla
-           
-        }).start(); // Iniciar el hilo
+            SwingUtilities.invokeLater(() -> {
+            jTablaClientes.setModel(model); // Se incluyen en la tabla
+        });
+    }).start(); // Iniciar el hilo
+        
     }
     
     
